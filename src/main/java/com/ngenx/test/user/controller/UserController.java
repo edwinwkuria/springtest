@@ -2,10 +2,7 @@ package com.ngenx.test.user.controller;
 import com.ngenx.test.user.model.User;
 import com.ngenx.test.user.repository.UserRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +23,15 @@ public class UserController
         long longStart = Long.parseLong(start);
         long longEnd = Long.parseLong(end);
         return uri.findByIdBetween(longStart, longEnd);
+    }
+    @PostMapping(path = "/add_user", consumes = "application/json", produces = "application/json")
+    public User addUser(@RequestBody User user){
+        uri.save(user);
+        return user;
+    }
+    @PutMapping(path = "/users/{id}", consumes = "application/json", produces = "application/json")
+    public User updateUser(@RequestBody User user, @PathVariable Long id){
+        //uri.save(user);
+        return user;
     }
 }

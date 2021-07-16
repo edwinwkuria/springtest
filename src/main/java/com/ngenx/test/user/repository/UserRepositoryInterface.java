@@ -13,4 +13,6 @@ public interface UserRepositoryInterface extends JpaRepository<User, Long>
 
     public List<User> findByIdBetween(long start, long end);
 
+    public User save(User user);
+
 }
